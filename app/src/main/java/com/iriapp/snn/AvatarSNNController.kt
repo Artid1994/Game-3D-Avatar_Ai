@@ -177,7 +177,12 @@ class AvatarSNNController(private val numNeurons: Int) {
             val blinkIdx = CHANNEL_BLINK + ch
             if (blinkIdx < spikeCount.size) {
                 // A blink is detected if the neuron fires significantly more than average
-                val avg = if (history.size > 0) history.sumOf { frame -> if (frame[blinkIdx]) 1 else 0 } / history.size.toFloat() else 0f
+                val avg = if (history.size > 0) {
+                    val total = history.fold(0) { acc, frame -> acc + if (frame[blinkIdx]) 1 else 0 }
+                    total.toFloat() / history.size
+                } else {
+                    0f
+                }
                 if (spikeCount[blinkIdx] > history.size * blinkThreshold) {
                     blinkFlags[ch] = true
                     // Reset after detecting for cooldown
