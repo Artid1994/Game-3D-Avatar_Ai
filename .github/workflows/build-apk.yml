@@ -26,9 +26,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          check-latest: true
-          cache: gradle
-          gradle-version: 8.7
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
@@ -45,18 +42,23 @@ jobs:
           echo "sdk.dir=$ANDROID_HOME" >> local.properties
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew || echo "Warning: failed to grant execute permission to gradlew"
+          else
+            echo "gradlew not found, skipping permission grant"
+          fi
 
       - name: Clean build
         run: ./gradlew clean
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload Debug APK artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Debug-APK
+          name: app-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
