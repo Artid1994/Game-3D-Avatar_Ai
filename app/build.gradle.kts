@@ -1,11 +1,11 @@
 plugins {
-    id("com.android.application") version "9.1.0"
-    id("org.jetbrains.kotlin.android") version "1.9.22"
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "com.iriapp.snn"
-    compileSdk = 37
+    compileSdk = 34
     ndkVersion = "25.2.9519653"
 
     defaultConfig {
@@ -16,7 +16,7 @@ android {
         versionName = "1.0"
 
         ndk {
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+            abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a", "x86_64"))
         }
     }
 
@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("io.github.sceneview:sceneview:4.56.0")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("io.github.sceneview:arsceneview:0.10.0")
 }
