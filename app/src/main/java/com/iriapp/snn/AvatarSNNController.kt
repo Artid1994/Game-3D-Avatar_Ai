@@ -90,7 +90,7 @@ class AvatarSNNController(private val numNeurons: Int) {
         }
 
         // Store current spike pattern in circular history
-        history[historyIndex] = spikes.clone()
+        history[historyIndex] = BooleanArray(spikes.size) { spikes[it] != 0.toByte() }
         historyIndex = (historyIndex + 1) % history.size
 
         // Increment spike counters for all neurons that spiked
@@ -177,7 +177,7 @@ class AvatarSNNController(private val numNeurons: Int) {
             val blinkIdx = CHANNEL_BLINK + ch
             if (blinkIdx < spikeCount.size) {
                 // A blink is detected if the neuron fires significantly more than average
-                val avg = if (history.size > 0) history.sumOf { frame -> frame[blinkIdx] } / history.size.toFloat() else 0f
+                val avg = if (history.size > 0) history.sumOf { frame -> if (frame[blinkIdx]) 1 else 0 } / history.size.toFloat() else 0f
                 if (spikeCount[blinkIdx] > history.size * blinkThreshold) {
                     blinkFlags[ch] = true
                     // Reset after detecting for cooldown
