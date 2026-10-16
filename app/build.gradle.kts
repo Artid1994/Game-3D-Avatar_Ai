@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.iriapp.snn"
-    compileSdk = 34
+    compileSdk = 37
     ndkVersion = "25.2.9519653"
 
     defaultConfig {
@@ -37,7 +37,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-}
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
