@@ -53,8 +53,8 @@ Java_com_iriapp_snn_SnnCore_nativeInit(JNIEnv* env, jobject obj,
         return JNI_FALSE;  /* cannot support >MAX_NEURONS */
     }
 
-    g_cfg_ptr->input_weights  = in_w;
-    g_cfg_ptr->output_weights = out_w;
+    g_cfg_ptr->input_weights  = (double*)in_w;
+    g_cfg_ptr->output_weights = (double*)out_w;
 
     /* Initialize weights to a small positive value (default) */
     for (int i = 0; i < numNeurons; i++) {
@@ -99,17 +99,17 @@ Java_com_iriapp_snn_SnnCore_nativeStep(JNIEnv* env, jobject obj,
     /* Copy output byte array (or allocate if null) */
     jbyte* output_buf = (jbyte*)(*env)->GetByteArrayElements(env, output, NULL);
     if (output_buf == NULL) {
-        (*env)->ReleaseByteArrayElements(env, input_buf, JNI_ABORT);
+        (*env)->ReleaseByteArrayElements(env, input, input_buf, JNI_ABORT);
         return NULL;
     }
 
     /* Step the SNN */
     int ret = snn_core_step(g_cfg_ptr, (const unsigned char*)input_buf,
                             (unsigned char*)output_buf);
-    (*env)->ReleaseByteArrayElements(env, input_buf, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, output, output_buf, JNI_ABORT);
 
     if (ret != 0) {
-        (*env)->ReleaseByteArrayElements(env, output_buf, JNI_ABORT);
+        (*env)->ReleaseByteArrayElements(env, output, output_buf, JNI_ABORT);
         return NULL;
     }
 
@@ -119,6 +119,6 @@ Java_com_iriapp_snn_SnnCore_nativeStep(JNIEnv* env, jobject obj,
         (*env)->SetByteArrayRegion(env, result, 0, n, (const jbyte*)output_buf);
     }
 
-    (*env)->ReleaseByteArrayElements(env, output_buf, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, output, output_buf, JNI_ABORT);
     return result;
 }
