@@ -26,17 +26,23 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          check-latest: true
           cache: gradle
+          gradle-version: 8.7
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          cmd: |
+            sdkmanager --install "build-tools;34.0.0" "platforms;android-34" "platform-tools"
 
       - name: Set up Android NDK r25c
         run: |
           sudo apt-get update
           sudo apt-get install -y ninja-build
-          touch local.properties
-          echo "ndk.dir=/usr/lib/android-sdk/ndk/25.2.9519653" >> local.properties
+          mkdir -p $ANDROID_HOME/ndk/25.2.9519653
+          echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> local.properties
+          echo "sdk.dir=$ANDROID_HOME" >> local.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
