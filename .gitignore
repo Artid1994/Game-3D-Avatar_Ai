@@ -1,0 +1,22 @@
+# Built application files
+*.apk
+*.aar
+
+# Gradle build outputs
+build/
+.gradle/
+
+# Local configuration (SDK path, etc.)
+local.properties
+
+# IDE / editor files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+
+# Signing keys
+*.keystore
+*.jks
+.tranquilpatterns/
