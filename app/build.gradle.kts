@@ -33,8 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("io.github.sceneview:sceneview:4.56.0")
 }

@@ -20,6 +20,14 @@
         android:layout_marginTop="12dp"
         android:text="Run SNN Step" />
 
+    <!-- 3D Scene View container for avatar rendering -->
+    <LinearLayout
+        android:id="@+id/scene_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="8dp"
+        android:background="#1a1a2e" />
+
     <ScrollView
         android:id="@+id/telemetry_scroll_view"
         android:layout_width="match_parent"

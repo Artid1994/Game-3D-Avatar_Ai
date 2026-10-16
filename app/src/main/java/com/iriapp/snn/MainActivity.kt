@@ -3,10 +3,13 @@ package com.iriapp.snn
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import io.github.sceneview.SceneView
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,9 +17,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var runButton: Button
     private lateinit var telemetryTextView: TextView
     private lateinit var telemetryScrollView: ScrollView
+    private lateinit var sceneViewContainer: LinearLayout
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private val avatarController = AvatarSNNController(256)
+    private val avatarRenderer = AvatarRenderer(this)
 
     // Pre-allocated buffers (numNeurons = 256)
     private val inputBytes = ByteArray(256) { 0 }
@@ -30,9 +35,13 @@ class MainActivity : AppCompatActivity() {
         runButton = findViewById(R.id.run_button)
         telemetryTextView = findViewById(R.id.telemetry_text_view)
         telemetryScrollView = findViewById(R.id.telemetry_scroll_view)
+        sceneViewContainer = findViewById(R.id.scene_view_container)
 
         // Initialize SNN core on launch
         initializeSnnCore()
+
+        // Attach 3D avatar renderer
+        attachAvatarRenderer()
 
         // Connect button click listener
         runButton.setOnClickListener {
@@ -44,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                     if (spikes != null) {
                         avatarController.pushSpikes(inputBytes, spikes)
                         updateTelemetry()
+                        updateAvatar()
                     } else {
                         statusTextView.text = "SNN step failed"
                     }
@@ -68,6 +78,37 @@ class MainActivity : AppCompatActivity() {
         } else {
             "Status: SNN init failed"
         }
+    }
+
+    /** Attach the 3D avatar renderer to the scene view container. */
+    private fun attachAvatarRenderer() {
+        try {
+            // Create a SceneView dynamically
+            val sceneView = SceneView(this)
+            sceneView.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            sceneViewContainer.addView(sceneView)
+
+            // Load the 3D avatar model
+            avatarRenderer.attachToSceneView(sceneView)
+            val loaded = avatarRenderer.loadAvatar("models/avatar.glb")
+            statusTextView.text = if (loaded) {
+                "Status: SNN ready (256 neurons) + 3D Avatar loaded"
+            } else {
+                "Status: SNN ready (256 neurons) + 3D Avatar load failed"
+            }
+        } catch (e: Exception) {
+            statusTextView.text = "Status: SceneView init failed: ${e.message}"
+        }
+    }
+
+    /** Update the 3D avatar based on current SNN state. */
+    private fun updateAvatar() {
+        val state = avatarController.currentState
+        avatarRenderer.update(state)
+        avatarRenderer.updateTransform(state)
     }
 
     /** Update telemetry display with current SNN state. */
