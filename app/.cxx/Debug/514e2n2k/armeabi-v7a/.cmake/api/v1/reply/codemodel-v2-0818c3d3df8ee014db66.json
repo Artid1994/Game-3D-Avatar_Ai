@@ -1,0 +1,61 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-3301e882dfb3c10e3e07.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "snn_engine",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "snn_engine::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-snn_engine-Debug-17aa9c3f8ad3ecebb45e.json",
+					"name" : "snn_engine",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/artid1994/Data/\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e04 Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a",
+		"source" : "/home/artid1994/Data/\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e04 Game 3D-Avatar_Ai/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

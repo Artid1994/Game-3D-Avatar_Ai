@@ -1,0 +1,5 @@
+# ninja log v5
+21	247	1792171371212589871	CMakeFiles/snn_engine.dir/snn_jni.c.o	86431f4b349244dc
+0	269	1792171371244590234	CMakeFiles/snn_engine.dir/snn_core.c.o	b85f0a242f69d471
+269	356	1792171371324591141	/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/build/intermediates/cxx/Debug/514e2n2k/obj/armeabi-v7a/libsnn_engine.so	988d862d84a3376d
+2	123	1792172543895377303	/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/build/intermediates/cxx/Debug/514e2n2k/obj/armeabi-v7a/libsnn_engine.so	988d862d84a3376d

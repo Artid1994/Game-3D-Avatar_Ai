@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64",
+  "command": "/home/artid1994/android-sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=x86_64-none-linux-android24 --sysroot=/home/artid1994/android-sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dsnn_engine_EXPORTS -I\"/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp\" -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o CMakeFiles/snn_engine.dir/snn_core.c.o -c \"/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp/snn_core.c\"",
+  "file": "/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp/snn_core.c"
+},
+{
+  "directory": "/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64",
+  "command": "/home/artid1994/android-sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=x86_64-none-linux-android24 --sysroot=/home/artid1994/android-sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dsnn_engine_EXPORTS -I\"/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp\" -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o CMakeFiles/snn_engine.dir/snn_jni.c.o -c \"/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp/snn_jni.c\"",
+  "file": "/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp/snn_jni.c"
+}
+]

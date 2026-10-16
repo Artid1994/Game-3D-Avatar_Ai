@@ -1,0 +1,1 @@
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/src/main/cpp/snn_core.h

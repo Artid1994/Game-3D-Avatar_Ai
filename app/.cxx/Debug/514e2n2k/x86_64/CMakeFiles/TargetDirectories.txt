@@ -1,0 +1,7 @@
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/snn_engine.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/edit_cache.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/rebuild_cache.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/list_install_components.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/install.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/install/local.dir
+/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/x86_64/CMakeFiles/install/strip.dir
