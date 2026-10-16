@@ -1,6 +1,8 @@
 #ifndef SNN_CORE_H
 #define SNN_CORE_H
 
+#define MAX_NEURONS 256
+
 #ifdef __cplusplus
 extern "C" {
 #endif

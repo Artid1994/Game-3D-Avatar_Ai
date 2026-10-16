@@ -91,34 +91,34 @@ Java_com_iriapp_snn_SnnCore_nativeStep(JNIEnv* env, jobject obj,
     }
 
     /* Copy input byte array to native buffer */
-    jbyte* input_buf = (jbyte*)env->GetByteArrayElements(input, NULL);
+    jbyte* input_buf = (jbyte*)(*env)->GetByteArrayElements(env, input, NULL);
     if (input_buf == NULL) {
         return NULL;
     }
 
     /* Copy output byte array (or allocate if null) */
-    jbyte* output_buf = (jbyte*)env->GetByteArrayElements(output, NULL);
+    jbyte* output_buf = (jbyte*)(*env)->GetByteArrayElements(env, output, NULL);
     if (output_buf == NULL) {
-        env->ReleaseByteArrayElements(input, input_buf, JNI_ABORT);
+        (*env)->ReleaseByteArrayElements(env, input_buf, JNI_ABORT);
         return NULL;
     }
 
     /* Step the SNN */
     int ret = snn_core_step(g_cfg_ptr, (const unsigned char*)input_buf,
                             (unsigned char*)output_buf);
-    env->ReleaseByteArrayElements(input, input_buf, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, input_buf, JNI_ABORT);
 
     if (ret != 0) {
-        env->ReleaseByteArrayElements(output, output_buf, JNI_ABORT);
+        (*env)->ReleaseByteArrayElements(env, output_buf, JNI_ABORT);
         return NULL;
     }
 
     /* Return a new byte array copy to the caller (or return the buffer) */
-    result = env->NewByteArray(env, n);
+    result = (*env)->NewByteArray(env, n);
     if (result != NULL) {
-        env->SetByteArrayRegion(result, 0, n, (const jbyte*)output_buf);
+        (*env)->SetByteArrayRegion(env, result, 0, n, (const jbyte*)output_buf);
     }
 
-    env->ReleaseByteArrayElements(output, output_buf, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, output_buf, JNI_ABORT);
     return result;
 }
