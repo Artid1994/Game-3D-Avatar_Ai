@@ -9,6 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      GIT_CONFIG_NOSYSTEM: '1'
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: 'safe.directory'
+      GIT_CONFIG_VALUE_0: '*'
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,11 +34,8 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Accept Android SDK Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager -- licenses || true
+        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Install Android NDK r25c
         run: $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;25.2.9519653"
