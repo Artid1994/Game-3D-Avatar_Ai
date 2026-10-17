@@ -2,69 +2,51 @@ name: Build Debug APK
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "master" ]
-
-env:
-  ANDROID_COMPILE_SDK: 34
-  ANDROID_MIN_SDK: 22
-  ANDROID_TARGET_SDK: 34
-  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2048m -Dorg.gradle.daemon=false"
-  GRADLEW: "./gradlew"
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GIT_CONFIG_COUNT: '1'
-      GIT_CONFIG_KEY_0: 'safe.directory'
-      GIT_CONFIG_VALUE_0: '*'
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Configure Git Safe Directory
+        run: |
+          git config --global --add safe.directory "*"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          packages: build-tools;34.0.0 platforms;android-34 platform-tools
-          accept-android-sdk-licenses: true
 
       - name: Accept Android SDK Licenses
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || true
+        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager -- licenses || true
 
       - name: Install Android NDK r25c
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;25.2.9519653"
+        run: $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;25.2.9519653"
 
       - name: Grant execute permission for gradlew
-        run: |
-          if [ -f gradlew ]; then
-            chmod +x gradlew || echo "Warning: failed to grant execute permission to gradlew"
-          else
-            echo "gradlew not found, skipping permission grant"
-          fi
+        run: chmod +x gradlew
 
       - name: Clean build
-        run: ./gradlew clean
+        run: ./gradlew clean --stacktrace
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload Debug APK artifact
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 30
