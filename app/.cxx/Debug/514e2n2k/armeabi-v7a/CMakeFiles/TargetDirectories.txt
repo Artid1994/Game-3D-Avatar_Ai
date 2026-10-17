@@ -1,7 +1,0 @@
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/snn_engine.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/edit_cache.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/rebuild_cache.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/list_install_components.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/install.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/install/local.dir
-/home/artid1994/Data/โปรเจค Game 3D-Avatar_Ai/app/.cxx/Debug/514e2n2k/armeabi-v7a/CMakeFiles/install/strip.dir

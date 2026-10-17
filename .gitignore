@@ -20,3 +20,6 @@ local.properties
 *.keystore
 *.jks
 .tranquilpatterns/
+
+# Regenerable build cache (Gradle + CMake) - never commit
+app/.cxx/
